@@ -7,7 +7,6 @@ public class Minesweeper {
     public Board board;
     public Button button;
     public Souris mouse;
-    public Theme theme;
     public MainGraphic mg;
     public boolean end;
     public boolean menu;
@@ -18,8 +17,7 @@ public class Minesweeper {
         this.board = new Board(level.getWidth(), level.getHeight(), level.getNbBombs());
         this.button = new Dig(true);
         this.mouse = window.getSouris();
-        this.theme = new Classic();
-        this.mg = new MainGraphic(window, board, button, level.getSizeTile(), level.getWidthWindow(), level.getHeightWindow(), theme);
+        this.mg = new MainGraphic(window, board, button, level.getSizeTile(), level.getWidthWindow(), level.getHeightWindow());
         this.end = false;
         this.menu = false;
     }
@@ -30,8 +28,7 @@ public class Minesweeper {
         this.board = new Board(level.getWidth(), level.getHeight(), level.getNbBombs());
         this.button = new Dig(true);
         this.mouse = window.getSouris();
-        this.theme = new Classic();
-        this.mg = new MainGraphic(window, board, button, level.getSizeTile(), level.getWidthWindow(), level.getHeightWindow(), theme);
+        this.mg = new MainGraphic(window, board, button, level.getSizeTile(), level.getWidthWindow(), level.getHeightWindow());
         this.end = false;
         this.menu = false;
     }

@@ -49,14 +49,14 @@ public class Dig implements Button {
     }
 
     @Override
-    public Texture selection(int sizeTile, int width, int height, Theme theme) {
+    public Texture selection(int sizeTile, int width, int height) {
         /**
          * We create a square with the color blue, the position and the size of the tile
          */
         if (this.state) {
-            return new Texture(theme.getDigTrue(), new Point(2*sizeTile, height-2*sizeTile), sizeTile, sizeTile);
+            return new Texture("./img/Minesweeper_questionmark_true.png", new Point(2*sizeTile, height-2*sizeTile), sizeTile, sizeTile);
         } else {
-            return new Texture(theme.getDig(), new Point(2*sizeTile, height-2*sizeTile), sizeTile, sizeTile);
+            return new Texture("./img/Minesweeper_questionmark.svg.png", new Point(2*sizeTile, height-2*sizeTile), sizeTile, sizeTile);
         }
     }
 }

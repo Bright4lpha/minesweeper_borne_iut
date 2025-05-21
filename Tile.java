@@ -15,7 +15,7 @@ public interface Tile {
 
     public void discover(Board board);
     public void switchFlag();
-    public Rectangle displayGraphic(Theme theme, int sizeTile);
+    public Rectangle displayGraphic(int sizeTile);
     public void display();
     public int neighbour(Board board);
     public int addNeighbour();

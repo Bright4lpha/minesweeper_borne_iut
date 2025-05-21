@@ -77,16 +77,16 @@ public class Bomb implements Tile {
     }
 
     @Override
-    public Rectangle displayGraphic(Theme theme, int sizeTile) {
+    public Rectangle displayGraphic(int sizeTile) {
         Point p = new Point(this.x*sizeTile, this.y*sizeTile);
         if (this.masked) {
             if (this.flag) {
-                return new Texture(theme.getFlag(), p, sizeTile, sizeTile);
+                return new Texture("./img/Minesweeper_flag.svg.png", p, sizeTile, sizeTile);
             } else {
-                return new Texture(theme.getTileMasked(), p, sizeTile, sizeTile);
+                return new Texture("./img/Minesweeper_unopened_square.svg.png", p, sizeTile, sizeTile);
             }
         } else {
-            return new Texture(theme.getBomb(), p, sizeTile, sizeTile);
+            return new Texture("./img/Minesweeper_bomb.png", p, sizeTile, sizeTile);
         }
     }
 

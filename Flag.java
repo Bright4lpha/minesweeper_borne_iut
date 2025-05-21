@@ -49,14 +49,14 @@ public class Flag implements Button{
     }
 
     @Override
-    public Texture selection(int sizeTile, int width, int height, Theme theme) {
+    public Texture selection(int sizeTile, int width, int height) {
         /**
          * We create a square with the color blue, the position and the size of the tile
          */
         if (this.state) {
-            return new Texture(theme.getFlagTrue(), new Point(width - 3*sizeTile,height-2*sizeTile), sizeTile, sizeTile);
+            return new Texture("./img/Minesweeper_flag_true.png", new Point(width - 3*sizeTile,height-2*sizeTile), sizeTile, sizeTile);
         } else {
-            return new Texture(theme.getFlag(), new Point(width - 3*sizeTile,height-2*sizeTile), sizeTile, sizeTile);
+            return new Texture("./img/Minesweeper_flag.svg.png", new Point(width - 3*sizeTile,height-2*sizeTile), sizeTile, sizeTile);
         }    
     }
 }
