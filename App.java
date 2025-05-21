@@ -1,5 +1,7 @@
 // import MG2D.*;
 // import MG2D.geometrie.*;
+import java.awt.RenderingHints.Key;
+
 import MG2D.geometrie.Point;
 
 public class App {
@@ -15,6 +17,7 @@ public class App {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                m.move(Minesweeper.keyboard);
                 if (m.mouse.getClicGauche()) {
                     Point positionMouse = new Point(m.mouse.getPosition());
                     int x = positionMouse.getX();
