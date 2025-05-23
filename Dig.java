@@ -5,7 +5,7 @@ public class Dig implements Button {
 
     /* Attributes */
     private boolean state = false;
-    
+
     /* Builders */
     public Dig() {
         this.state = false;
@@ -29,7 +29,8 @@ public class Dig implements Button {
     @Override
     public void display() {
         /**
-         * If the button is activated, we display a "C" character, else we display a space
+         * If the button is activated, we display a "C" character, else we display a
+         * space
          */
         if (this.state) {
             System.out.print("C");
@@ -54,9 +55,11 @@ public class Dig implements Button {
          * We create a square with the color blue, the position and the size of the tile
          */
         if (this.state) {
-            return new Texture("./img/Minesweeper_questionmark_true.png", new Point(2*sizeTile, height-2*sizeTile), sizeTile, sizeTile);
+            return new Texture("./img/Minesweeper_questionmark_true.png",
+                    new Point(2 * sizeTile, height - 2 * sizeTile), sizeTile, sizeTile);
         } else {
-            return new Texture("./img/Minesweeper_questionmark.svg.png", new Point(2*sizeTile, height-2*sizeTile), sizeTile, sizeTile);
+            return new Texture("./img/Minesweeper_questionmark.svg.png", new Point(2 * sizeTile, height - 2 * sizeTile),
+                    sizeTile, sizeTile);
         }
     }
 }

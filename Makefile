@@ -2,7 +2,7 @@ all :
 	javac *.java
 
 main :
-	javac App.java
+	javac *.java
 	java App
 
 clean :

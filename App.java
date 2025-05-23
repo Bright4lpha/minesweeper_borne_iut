@@ -1,78 +1,114 @@
+
 // import MG2D.*;
 // import MG2D.geometrie.*;
 import java.awt.RenderingHints.Key;
+import java.awt.event.KeyEvent;
 
 import MG2D.geometrie.Point;
 
 public class App {
-    
+
+    private static KeyboardArcade keyboard;
+
     public static void main(String[] args) {
         Minesweeper m = new Minesweeper();
-        
-            m.window.rafraichir();
-    
-            while (true) {
-                try {
-                    Thread.sleep(30);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+        keyboard = new KeyboardArcade();
+        m.window.addKeyListener(keyboard);
+        m.window.getP().addKeyListener(keyboard);
+
+        m.window.rafraichir();
+
+        while (true) {
+            try {
+                Thread.sleep(30);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            // exit
+            if (keyboard.isButtonXTrigger()) {
+                System.exit(0);
+            }
+            // TODO : Menu
+
+            // Game
+            if (!m.end) {
+                // change to dig button
+                if (keyboard.isButtonATrigger()) {
+                    m.button = new Dig(true);
+                    m.mg.update(m.window, m.board, m.button, m.level.getSizeTile(),
+                            m.level.getWidthWindow(), m.level.getHeightWindow(), m.cursor);
+                    m.window.rafraichir();
                 }
-                m.move(Minesweeper.keyboard);
-                if (m.mouse.getClicGauche()) {
-                    Point positionMouse = new Point(m.mouse.getPosition());
-                    int x = positionMouse.getX();
-                    int y = positionMouse.getY();
-                    if (m.menu) {
-                        m = m.mg.menuOnClick(x, y, m);
+                // change to flag button
+                if (keyboard.isButtonBTrigger()) {
+                    m.button = new Flag(true);
+                    m.mg.update(m.window, m.board, m.button, m.level.getSizeTile(),
+                            m.level.getWidthWindow(), m.level.getHeightWindow(), m.cursor);
+                    m.window.rafraichir();
+                }
+                // move
+                if (keyboard.isUpTrigger()) {
+                    if (m.cursor.getY() < Constants.sizeTile * (Constants.height - 1)) {
+                        m.cursor.moveUp();
+                        m.mg.moveCursor(0, Constants.sizeTile);
                     }
-                    else {
-                        // Quit Game
-                        if (x>0 && x<m.level.getSizeTile() && y>m.level.getHeightWindow()-m.level.getSizeTile() && y<m.level.getHeightWindow()) {
-                            System.exit(0);
-                        }
-                        // Restart Game
-                        if (x>m.level.getWidthWindow()-m.level.getSizeTile() && x<m.level.getWidthWindow() && y>m.level.getHeightWindow()-m.level.getSizeTile() && y<m.level.getHeightWindow()) {
-                            m.mg.menuLevel(m.window, m.level.getSizeTile(), m.level.getWidthWindow(), m.level.getHeightWindow());
-                            m.menu = true;
-                        }
-                        else {
-                            // The game is not over yet ==> continue
-                            if (!m.end) {
-                                if (x > 2*m.level.getSizeTile() && x < 3*m.level.getSizeTile() && y > m.level.getHeightWindow()-2*m.level.getSizeTile() && y < m.level.getHeightWindow()-m.level.getSizeTile()) {
-                                    m.button = new Dig(true);
-                                } else if (x > m.level.getWidthWindow()-3*m.level.getSizeTile() && x < m.level.getWidthWindow()-2*m.level.getSizeTile() && y > m.level.getHeightWindow()-2*m.level.getSizeTile() && y < m.level.getHeightWindow()-m.level.getSizeTile()) {
-                                    m.button = new Flag(true);
-                                } else if (x > 0 && x < m.level.getSizeTile() * m.level.getWidth() && y > 0 && y < m.level.getSizeTile()*m.level.getHeight()) {
-                                    m.board.action(x, y, m.button, m.level.getSizeTile());
-                                }
-                                m.mg = new MainGraphic(m.window, m.board, m.button, m.level.getSizeTile(), m.level.getWidthWindow(), m.level.getHeightWindow());
-                                // End of the game if Mine
-                                m.end = m.board.endGameMine();
-                                if (m.end) {
-                                    m.mg.endOfTheGameMine(m.window, m.level.getSizeTile(), m.level.getWidthWindow(), m.level.getHeightWindow());
-                                }
-                                else if (!m.end) {
-                                    m.end = m.board.endGameWin();
-                                    if (m.end) {
-                                        m.mg.endOfTheGameWin(m.window, m.level.getSizeTile(), m.level.getWidthWindow(), m.level.getHeightWindow());
-                                    }
-                                }
-                                
-                            }
-                            // The game is over ==> restart or quit
-                            else {
-                                if (x > (m.level.getWidthWindow()/2 - 2*m.level.getSizeTile()) && x < (m.level.getWidthWindow()/2 - 2*m.level.getSizeTile()+4*m.level.getSizeTile()) && y > m.level.getHeightWindow()-2*m.level.getSizeTile() && y < m.level.getHeightWindow()-m.level.getSizeTile()) {
-                                    m.board = new Board(m.level.getWidth(), m.level.getHeight(), m.level.getNbBombs());
-                                    m.board.neighbourhood();
-                                    m.button = new Dig(true);
-                                    m.mg = new MainGraphic(m.window, m.board, m.button, m.level.getSizeTile(), m.level.getWidthWindow(), m.level.getHeightWindow());
-                                    m.end = false;
-                                }
-                            }
+                    m.window.rafraichir();
+                }
+                if (keyboard.isDownTrigger()) {
+                    if (m.cursor.getY() > 0) {
+                        m.cursor.moveDown();
+                        m.mg.moveCursor(0, -Constants.sizeTile);
+                    }
+                    m.window.rafraichir();
+                }
+                if (keyboard.isLeftTrigger()) {
+                    if (m.cursor.getX() > 0) {
+                        m.cursor.moveLeft();
+                        m.mg.moveCursor(-Constants.sizeTile, 0);
+                    }
+                    m.window.rafraichir();
+                }
+                if (keyboard.isRightTrigger()) {
+                    if (m.cursor.getX() < Constants.sizeTile * (Constants.width - 1)) {
+                        m.cursor.moveRight();
+                        m.mg.moveCursor(Constants.sizeTile, 0);
+                    }
+                    m.window.rafraichir();
+                }
+                // Dig or flag
+                if (keyboard.isButtonCTrigger()) {
+                    m.board.action(m.cursor.getX(), m.cursor.getY(), m.button, m.level.getSizeTile());
+                    m.mg.update(m.window, m.board, m.button, m.level.getSizeTile(),
+                            m.level.getWidthWindow(), m.level.getHeightWindow(), m.cursor);
+                    m.end = m.board.endGameMine();
+                    if (m.end) {
+                        m.mg.endOfTheGameMine(m.window, m.level.getSizeTile(),
+                                m.level.getWidthWindow(),
+                                m.level.getHeightWindow());
+                    } else if (!m.end) {
+                        m.end = m.board.endGameWin();
+                        if (m.end) {
+                            m.mg.endOfTheGameWin(m.window, m.level.getSizeTile(),
+                                    m.level.getWidthWindow(),
+                                    m.level.getHeightWindow());
                         }
                     }
+                }
+            } else {
+                // End of the game
+                // TODO score / replay
+                if (keyboard.isButtonCTrigger()) {
+                    m.board = new Board(m.level.getWidth(), m.level.getHeight(),
+                            m.level.getNbBombs());
+                    m.board.neighbourhood();
+                    m.button = new Dig(true);
+                    m.cursor = new Cursor(Constants.sizeTile);
+                    m.mg = new MainGraphic(m.window, m.board, m.button, m.level.getSizeTile(),
+                            m.level.getWidthWindow(), m.level.getHeightWindow(), m.cursor);
+                    m.end = false;
                     m.window.rafraichir();
                 }
             }
         }
     }
+}

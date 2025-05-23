@@ -18,12 +18,12 @@ import java.awt.event.KeyListener;
  * Buttons :
  * ButtonJ1
  * (bottom)
- * - ButtonJ1A
- * - ButtonJ1B
+ * - ButtonJ1A -> dig
+ * - ButtonJ1B -> flag
  * - ButtonJ1C
  * (top)
- * - ButtonJ1X
- * - ButtonJ1Y
+ * - ButtonJ1X -> back
+ * - ButtonJ1Y -> difficulty
  * - ButtonJ1Z
  */
 public class KeyboardArcade implements KeyListener {
