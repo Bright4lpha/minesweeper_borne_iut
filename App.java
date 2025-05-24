@@ -35,15 +35,13 @@ public class App {
                 // change to dig button
                 if (keyboard.isButtonATrigger()) {
                     m.button = new Dig(true);
-                    m.mg.update(m.window, m.board, m.button, m.level.getSizeTile(),
-                            m.level.getWidthWindow(), m.level.getHeightWindow(), m.cursor);
+                    m.mg.changeButton(m.button);
                     m.window.rafraichir();
                 }
                 // change to flag button
                 if (keyboard.isButtonBTrigger()) {
                     m.button = new Flag(true);
-                    m.mg.update(m.window, m.board, m.button, m.level.getSizeTile(),
-                            m.level.getWidthWindow(), m.level.getHeightWindow(), m.cursor);
+                    m.mg.changeButton(m.button);
                     m.window.rafraichir();
                 }
                 // move
@@ -93,6 +91,7 @@ public class App {
                                     m.level.getHeightWindow());
                         }
                     }
+                    m.window.rafraichir();
                 }
             } else {
                 // End of the game

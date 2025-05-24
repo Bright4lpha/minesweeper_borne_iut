@@ -11,6 +11,14 @@ public class MainGraphic {
 
     private static Font calibri = new Font("Calibri", Font.TYPE1_FONT, 40);
     private Texture cursorTexture = Cursor.cursorTexture();
+    // private Texture buttonSelect = new
+    // Texture("./img/Minesweeper_button_select.png",
+    // new Point(2 * Constants.sizeTile, Constants.height - 2 * Constants.sizeTile),
+    // Constants.sizeTile,
+    // Constants.sizeTile);
+    private Texture buttonSelect = new Texture("./img/Minesweeper_button_select.png",
+            new Point(2 * Constants.sizeTile, Constants.screenHeight - 2 * Constants.sizeTile), Constants.sizeTile,
+            Constants.sizeTile);
 
     public MainGraphic(Fenetre window, Board board, Button b, int sizeTile, int width, int height, Cursor cursor) {
         window.effacer();
@@ -34,12 +42,16 @@ public class MainGraphic {
         window.ajouter(new Texture("./img/Minesweeper_flag.svg.png",
                 new Point(width - 3 * sizeTile, height - 2 * sizeTile), sizeTile,
                 sizeTile));
-        window.ajouter(cursorTexture);
-        window.ajouter(b.selection(sizeTile, width, height));
+        // window.ajouter(b.selection(sizeTile, width, height));
 
-        // Cursor
-        // window.ajouter(new Texture("./img/Minesweeper_cursor.png",
-        // new Point(cursor.getX(), cursor.getY()), sizeTile, sizeTile));
+        window.ajouter(buttonSelect);
+        // Button select
+        // window.ajouter(new Texture("./img/Minesweeper_button_select.svg.png",
+        // new Point(2 * sizeTile, height - 2 * sizeTile), sizeTile, sizeTile));
+        // window.ajouter(new Texture("./img/Minesweeper_button_select.png",
+        // new Point(width - 3 * sizeTile, height - 2 * sizeTile), sizeTile, sizeTile));
+        // cursor
+        window.ajouter(cursorTexture);
 
         // Quit
         window.ajouter(new Texture("./img/Minesweeper_cross.png", new Point(0, height - sizeTile), sizeTile, sizeTile));
@@ -74,8 +86,12 @@ public class MainGraphic {
         // Buttons
         window.ajouter(new Texture("./img/Minesweeper_questionmark.svg.png",
                 new Point(2 * sizeTile, height - 2 * sizeTile), sizeTile, sizeTile));
+        window.ajouter(new Texture("./img/Minesweeper_flag.svg.png",
+                new Point(width - 3 * sizeTile, height - 2 * sizeTile), sizeTile,
+                sizeTile));
+        window.ajouter(buttonSelect);
         window.ajouter(cursorTexture);
-        window.ajouter(b.selection(sizeTile, width, height));
+        // window.ajouter(b.selection(sizeTile, width, height));
 
         // Cursor
         // window.ajouter(new Texture("./img/Minesweeper_cursor.png",
@@ -144,8 +160,13 @@ public class MainGraphic {
         return ms;
     }
 
-    public void changeButton(Fenetre window, Button b, int sizeTile, int width, int height) {
-        window.ajouter(b.selection(sizeTile, width, height));
+    public void changeButton(Button b) {
+        // window.ajouter(b.selection(sizeTile, width, height));
+        if (b instanceof Dig) {
+            this.buttonSelect.translater(-20 * Constants.sizeTile, 0);
+        } else if (b instanceof Flag) {
+            this.buttonSelect.translater(20 * Constants.sizeTile, 0);
+        }
     }
 
     public void moveCursor(int x, int y) {
