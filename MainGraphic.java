@@ -1,4 +1,5 @@
 import java.awt.Font;
+import java.util.ArrayList;
 
 import MG2D.Couleur;
 import MG2D.Fenetre;
@@ -11,11 +12,6 @@ public class MainGraphic {
 
     private static Font calibri = new Font("Calibri", Font.TYPE1_FONT, 40);
     private Texture cursorTexture = Cursor.cursorTexture();
-    // private Texture buttonSelect = new
-    // Texture("./img/Minesweeper_button_select.png",
-    // new Point(2 * Constants.sizeTile, Constants.height - 2 * Constants.sizeTile),
-    // Constants.sizeTile,
-    // Constants.sizeTile);
     private Texture buttonSelect = new Texture("./img/Minesweeper_button_select.png",
             new Point(2 * Constants.sizeTile, Constants.screenHeight - 2 * Constants.sizeTile), Constants.sizeTile,
             Constants.sizeTile);
@@ -23,8 +19,6 @@ public class MainGraphic {
     public MainGraphic(Fenetre window, Board board, Button b, int sizeTile, int width, int height, Cursor cursor) {
         window.effacer();
         window.ajouter(new Texture("./img/Minesweeper_background.png", new Point(0, 0), width, height));
-        // window.ajouter(new Texture(theme.getBackground(), new Point(0, 0), width,
-        // height));
         int x = board.getWidth();
         int y = board.getHeight();
         for (int i = 0; i < x; i++) {
@@ -68,27 +62,41 @@ public class MainGraphic {
     }
 
     public void update(Fenetre window, Board board, Button b, int sizeTile, int width, int height, Cursor cursor) {
-        window.effacer();
-        window.ajouter(new Texture("./img/Minesweeper_background.png", new Point(0, 0), width, height));
+        // window.effacer();
+        // window.ajouter(new Texture("./img/Minesweeper_background.png", new Point(0,
+        // 0), width, height));
         // window.ajouter(new Texture(theme.getBackground(), new Point(0, 0), width,
         // height));
-        int x = board.getWidth();
-        int y = board.getHeight();
-        for (int i = 0; i < x; i++) {
-            for (int j = 0; j < y; j++) {
-                for (Tile c : board.getTiles()) {
-                    if (c.getX() == i && c.getY() == j) {
-                        window.ajouter(c.displayGraphic(sizeTile));
-                    }
-                }
-            }
+        // int x = board.getWidth();
+        // int y = board.getHeight();
+        // for (int i = 0; i < x; i++) {
+        // for (int j = 0; j < y; j++) {
+        // for (Tile c : board.getTiles()) {
+        // if (c.getX() == i && c.getY() == j) {
+        // window.ajouter(c.displayGraphic(sizeTile));
+        // }
+        // }
+        // }
+        // }
+
+        // get case du curs
+        for (Tile c : board.getDiscoveredTiles()) {
+            window.ajouter(c.displayGraphic(sizeTile));
         }
+        System.out.println("Discovered tiles: " + board.getDiscoveredTiles().size());
+        board.clearDiscoveredTiles();
+
+        // Tile c = board.getCase(cursor.getX() / sizeTile, cursor.getY() / sizeTile);
+        // if (c != null) {
+        // window.ajouter(c.displayGraphic(sizeTile));
+        // }
+
         // Buttons
-        window.ajouter(new Texture("./img/Minesweeper_questionmark.svg.png",
-                new Point(2 * sizeTile, height - 2 * sizeTile), sizeTile, sizeTile));
-        window.ajouter(new Texture("./img/Minesweeper_flag.svg.png",
-                new Point(width - 3 * sizeTile, height - 2 * sizeTile), sizeTile,
-                sizeTile));
+        // window.ajouter(new Texture("./img/Minesweeper_questionmark.svg.png",
+        // new Point(2 * sizeTile, height - 2 * sizeTile), sizeTile, sizeTile));
+        // window.ajouter(new Texture("./img/Minesweeper_flag.svg.png",
+        // new Point(width - 3 * sizeTile, height - 2 * sizeTile), sizeTile,
+        // sizeTile));
         window.ajouter(buttonSelect);
         window.ajouter(cursorTexture);
         // window.ajouter(b.selection(sizeTile, width, height));

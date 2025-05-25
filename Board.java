@@ -5,7 +5,8 @@ public class Board {
     private int width;
     private int height;
     private int nbBombs;
-    
+    private ArrayList<Tile> discoveredTiles = new ArrayList<Tile>();
+
     public Board(int width, int height, int nbBombs) {
         if (width >= 6 && height >= 6 && nbBombs >= 1 && nbBombs < width * height) {
             this.width = width;
@@ -24,8 +25,7 @@ public class Board {
                 this.tiles.add(new Bomb(x, y));
             }
             this.neighbourhood();
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("Invalid input values for the plateau.");
         }
     }
@@ -34,19 +34,27 @@ public class Board {
     public int getWidth() {
         return this.width;
     }
-    
+
     public int getHeight() {
         return this.height;
     }
-    
+
     public int getNbBombs() {
         return this.nbBombs;
     }
-    
+
     public ArrayList<Tile> getTiles() {
         return this.tiles;
     }
-    
+
+    public ArrayList<Tile> getDiscoveredTiles() {
+        return this.discoveredTiles;
+    }
+
+    public void clearDiscoveredTiles() {
+        this.discoveredTiles.clear();
+    }
+
     public Tile getCase(int x, int y) {
         for (Tile c : this.tiles) {
             if (c.getX() == x && c.getY() == y) {
@@ -57,8 +65,8 @@ public class Board {
     }
 
     public void display() {
-        for (int j=this.height; j>-1; j--) {
-            for (int i=0; i<this.width; i++) {
+        for (int j = this.height; j > -1; j--) {
+            for (int i = 0; i < this.width; i++) {
                 for (Tile c : this.tiles) {
                     if (c.getX() == i && c.getY() == j) {
                         c.display();
@@ -74,6 +82,7 @@ public class Board {
         int j = y / sizeTile;
         for (Tile c : this.tiles) {
             if (c.getX() == i && c.getY() == j) {
+                discoveredTiles.add(c);
                 b.actionButton(c, this);
             }
         }
@@ -82,6 +91,7 @@ public class Board {
     public void neighbourhood() {
         for (Tile c : this.tiles) {
             c.neighbour(this);
+            discoveredTiles.add(c);
         }
     }
 

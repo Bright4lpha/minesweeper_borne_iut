@@ -78,7 +78,7 @@ public class Bomb implements Tile {
 
     @Override
     public Rectangle displayGraphic(int sizeTile) {
-        Point p = new Point(this.x*sizeTile, this.y*sizeTile);
+        Point p = new Point(this.x * sizeTile, this.y * sizeTile);
         if (this.masked) {
             if (this.flag) {
                 return new Texture("./img/Minesweeper_flag.svg.png", p, sizeTile, sizeTile);
@@ -118,8 +118,7 @@ public class Bomb implements Tile {
     public boolean endGameMine() {
         if (!this.masked) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -128,8 +127,7 @@ public class Bomb implements Tile {
     public boolean endGameWin() {
         if (this.masked) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

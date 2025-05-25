@@ -3,6 +3,8 @@
 // import MG2D.geometrie.*;
 import java.awt.RenderingHints.Key;
 import java.awt.event.KeyEvent;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import MG2D.geometrie.Point;
 
