@@ -24,7 +24,7 @@ public class Minesweeper {
         this.mouse = window.getSouris();
         this.cursor = new Cursor(level.getSizeTile());
         this.mg = new MainGraphic(window, board, button, level.getSizeTile(), level.getWidthWindow(),
-                level.getHeightWindow(), cursor);
+                level.getHeightWindow());
         this.end = false;
         this.menu = false;
     }
@@ -39,7 +39,7 @@ public class Minesweeper {
         this.mouse = window.getSouris();
         this.cursor = new Cursor(level.getSizeTile());
         this.mg = new MainGraphic(window, board, button, level.getSizeTile(), level.getWidthWindow(),
-                level.getHeightWindow(), cursor);
+                level.getHeightWindow());
         this.end = false;
         this.menu = false;
     }
