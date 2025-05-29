@@ -58,7 +58,7 @@ public class Dig implements Button {
             return new Texture("./img/Minesweeper_questionmark_true.png",
                     new Point(2 * sizeTile, height - 2 * sizeTile), sizeTile, sizeTile);
         } else {
-            return new Texture("./img/Minesweeper_questionmark.svg.png", new Point(2 * sizeTile, height - 2 * sizeTile),
+            return new Texture("./img/Minesweeper_questionmark.png", new Point(2 * sizeTile, height - 2 * sizeTile),
                     sizeTile, sizeTile);
         }
     }

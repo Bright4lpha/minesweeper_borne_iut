@@ -56,7 +56,7 @@ public class Flag implements Button{
         if (this.state) {
             return new Texture("./img/Minesweeper_flag_true.png", new Point(width - 3*sizeTile,height-2*sizeTile), sizeTile, sizeTile);
         } else {
-            return new Texture("./img/Minesweeper_flag.svg.png", new Point(width - 3*sizeTile,height-2*sizeTile), sizeTile, sizeTile);
+            return new Texture("./img/Minesweeper_flag.png", new Point(width - 3*sizeTile,height-2*sizeTile), sizeTile, sizeTile);
         }    
     }
 }

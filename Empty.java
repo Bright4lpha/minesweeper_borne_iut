@@ -149,14 +149,14 @@ public class Empty implements Tile {
         Point p = new Point(this.x*sizeTile, this.y*sizeTile);
         if (this.masked) {
             if (this.flag) {
-                return new Texture("./img/Minesweeper_flag.svg.png", p, sizeTile, sizeTile);
+                return new Texture("./img/Minesweeper_flag.png", p, sizeTile, sizeTile);
             } else {
-                return new Texture("./img/Minesweeper_unopened_square.svg.png", p, sizeTile, sizeTile);
+                return new Texture("./img/Minesweeper_unopened_square.png", p, sizeTile, sizeTile);
             }
         } else {
             String path = "./img/Minesweeper_";
             path += this.nbNeighbours;
-            path += ".svg.png";
+            path += ".png";
             return new Texture(path, p, sizeTile, sizeTile);
         }
     }

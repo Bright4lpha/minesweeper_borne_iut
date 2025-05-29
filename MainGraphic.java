@@ -37,9 +37,9 @@ public class MainGraphic {
             }
         }
         // Buttons
-        window.ajouter(new Texture("./img/Minesweeper_questionmark.svg.png",
+        window.ajouter(new Texture("./img/Minesweeper_questionmark.png",
                 new Point(2 * sizeTile, height - 2 * sizeTile), sizeTile, sizeTile));
-        window.ajouter(new Texture("./img/Minesweeper_flag.svg.png",
+        window.ajouter(new Texture("./img/Minesweeper_flag.png",
                 new Point(width - 3 * sizeTile, height - 2 * sizeTile), sizeTile,
                 sizeTile));
         window.ajouter(buttonSelect);
@@ -79,9 +79,9 @@ public class MainGraphic {
             }
         }
         // Buttons
-        window.ajouter(new Texture("./img/Minesweeper_questionmark.svg.png",
+        window.ajouter(new Texture("./img/Minesweeper_questionmark.png",
                 new Point(2 * sizeTile, height - 2 * sizeTile), sizeTile, sizeTile));
-        window.ajouter(new Texture("./img/Minesweeper_flag.svg.png",
+        window.ajouter(new Texture("./img/Minesweeper_flag.png",
                 new Point(width - 3 * sizeTile, height - 2 * sizeTile), sizeTile,
                 sizeTile));
         window.ajouter(buttonSelect);
@@ -123,12 +123,12 @@ public class MainGraphic {
 
     public void endOfTheGameMine(Fenetre window, int sizeTile, int width, int height) {
         window.ajouter(new Texture("./img/Minesweeper_lose.png",
-                new Point(width / 2 - 2 * sizeTile, height - 2 * sizeTile), 4 * sizeTile, sizeTile));
+                new Point(width / 2 - 4 * sizeTile, height - 3 * sizeTile), 8 * sizeTile, 2 * sizeTile));
     }
 
     public void endOfTheGameWin(Fenetre window, int sizeTile, int width, int height) {
         window.ajouter(new Texture("./img/Minesweeper_win.png",
-                new Point(width / 2 - 2 * sizeTile, height - 2 * sizeTile), 4 * sizeTile, sizeTile));
+                new Point(width / 2 - 4 * sizeTile, height - 3 * sizeTile), 8 * sizeTile, 2 * sizeTile));
     }
 
     public void menuLevel(Fenetre window, int sizeTile, int width, int height) {

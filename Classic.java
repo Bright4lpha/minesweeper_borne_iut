@@ -10,7 +10,7 @@ public class Classic implements Theme {
 
     @Override
     public String getFlag() {
-        return this.toString() + "/Minesweeper_flag.svg.png";
+        return this.toString() + "/Minesweeper_flag.png";
     }
 
     @Override
@@ -20,7 +20,7 @@ public class Classic implements Theme {
 
     @Override
     public String getDig() {
-        return this.toString() + "/Minesweeper_questionmark.svg.png";
+        return this.toString() + "/Minesweeper_questionmark.png";
     }
 
     @Override
@@ -30,12 +30,12 @@ public class Classic implements Theme {
     
     @Override
     public String getTileMasked() {
-        return this.toString() + "/Minesweeper_unopened_square.svg.png";
+        return this.toString() + "/Minesweeper_unopened_square.png";
     }
 
     @Override
     public String getTileDiscovered(int nbNeighbours) {
-        return this.toString() + "/Minesweeper_" + nbNeighbours + ".svg.png";
+        return this.toString() + "/Minesweeper_" + nbNeighbours + ".png";
     }
 
     @Override
