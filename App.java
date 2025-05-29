@@ -55,6 +55,8 @@ public class App {
                         menu = 3; // change to scores
                     } else if (m.mg.menu.getPos() == 2) {
                         menu = 4; // change to rules
+                        m.mg.openRules(m.window, m.level.getWidthWindow(), m.level.getHeightWindow());
+                        m.window.rafraichir();
                     } else if (m.mg.menu.getPos() == 3) {
                         System.exit(0);
                     }
@@ -146,6 +148,22 @@ public class App {
                     if (keyboard.isButtonXTrigger()) {
                         System.exit(0);
                     }
+                }
+            } else if (menu == 3) {
+                // Back to menu
+                if (keyboard.isButtonXTrigger()) {
+                    menu = 1;
+                    m.mg.menu(m.window, m.level.getSizeTile(),
+                            m.level.getWidthWindow(), m.level.getHeightWindow());
+                    m.window.rafraichir();
+                }
+            } else if (menu == 4) {
+                // Back to menu
+                if (keyboard.isButtonXTrigger()) {
+                    menu = 1;
+                    m.mg.menu(m.window, m.level.getSizeTile(),
+                            m.level.getWidthWindow(), m.level.getHeightWindow());
+                    m.window.rafraichir();
                 }
             }
         }

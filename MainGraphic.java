@@ -103,6 +103,12 @@ public class MainGraphic {
                 new Point(width / 2 + sizeTile, height - sizeTile + sizeTile / 2)));
     }
 
+    public void openRules(Fenetre window, int width, int height) {
+        window.effacer();
+        // Rules
+        window.ajouter(new Texture("./img/rules.png", new Point(0, 0), width, height));
+    }
+
     /**
      * Update the board of the game
      * 
