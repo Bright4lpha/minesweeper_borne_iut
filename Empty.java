@@ -9,7 +9,7 @@ public class Empty implements Tile {
     private int x;
     private int y;
     private int nbNeighbours;
-    
+
     /* Builders */
     public Empty() {
         this.masked = true;
@@ -32,20 +32,25 @@ public class Empty implements Tile {
         this.flag = flag;
     }
 
-    /* Getters
+    /*
+     * Getters
      */
     public boolean getMasked() {
         return this.masked;
     }
+
     public boolean getFlag() {
         return this.flag;
     }
+
     public int getX() {
         return this.x;
     }
+
     public int getY() {
         return this.y;
     }
+
     public int getNbNeighbours() {
         return this.nbNeighbours;
     }
@@ -54,15 +59,19 @@ public class Empty implements Tile {
     public void setMasked(boolean masked) {
         this.masked = masked;
     }
+
     public void setFlag(boolean flag) {
         this.flag = flag;
     }
+
     public void setX(int x) {
         this.x = x;
     }
+
     public void setY(int y) {
         this.y = y;
     }
+
     public void setXY(int x, int y) {
         this.x = x;
         this.y = y;
@@ -71,68 +80,69 @@ public class Empty implements Tile {
     /* Methods */
     public void discover(Board board) {
         this.masked = false;
+        board.addDiscoveredTile(this);
         if (this.nbNeighbours == 0) {
             int x = this.x;
             int y = this.y;
             // up right
-            if ((-1<x+1)&&(x+1<board.getWidth())&&(-1<y+1)&&(y+1<board.getHeight())) {
-                Tile neighbour = board.getCase(x+1, y+1);
+            if ((-1 < x + 1) && (x + 1 < board.getWidth()) && (-1 < y + 1) && (y + 1 < board.getHeight())) {
+                Tile neighbour = board.getCase(x + 1, y + 1);
                 if (neighbour.getMasked() && !neighbour.getFlag()) {
                     neighbour.discover(board);
                 }
             }
 
             // right
-            if ((-1<x+1)&&(x+1<board.getWidth())&&(-1<y)&&(y<board.getHeight())) {
-                Tile neighbour = board.getCase(x+1, y);
+            if ((-1 < x + 1) && (x + 1 < board.getWidth()) && (-1 < y) && (y < board.getHeight())) {
+                Tile neighbour = board.getCase(x + 1, y);
                 if (neighbour.getMasked() && !neighbour.getFlag()) {
                     neighbour.discover(board);
                 }
             }
-            
+
             // down right
-            if ((-1<x+1)&&(x+1<board.getWidth())&&(-1<y-1)&&(y-1<board.getHeight())) {
-                Tile neighbour = board.getCase(x+1, y-1);
+            if ((-1 < x + 1) && (x + 1 < board.getWidth()) && (-1 < y - 1) && (y - 1 < board.getHeight())) {
+                Tile neighbour = board.getCase(x + 1, y - 1);
                 if (neighbour.getMasked() && !neighbour.getFlag()) {
                     neighbour.discover(board);
                 }
             }
-            
+
             // down
-            if ((-1<x)&&(x<board.getWidth())&&(-1<y-1)&&(y-1<board.getHeight())) {
-                Tile neighbour = board.getCase(x, y-1);
+            if ((-1 < x) && (x < board.getWidth()) && (-1 < y - 1) && (y - 1 < board.getHeight())) {
+                Tile neighbour = board.getCase(x, y - 1);
                 if (neighbour.getMasked() && !neighbour.getFlag()) {
                     neighbour.discover(board);
                 }
             }
-            
+
             // down left
-            if ((-1<x-1)&&(x-1<board.getWidth())&&(-1<y-1)&&(y-1<board.getHeight())) {
-                Tile neighbour = board.getCase(x-1, y-1);
+            if ((-1 < x - 1) && (x - 1 < board.getWidth()) && (-1 < y - 1) && (y - 1 < board.getHeight())) {
+                Tile neighbour = board.getCase(x - 1, y - 1);
                 if (neighbour.getMasked() && !neighbour.getFlag()) {
                     neighbour.discover(board);
                 }
             }
-            
+
             // left
-            if ((-1<x-1)&&(x-1<board.getWidth())&&(-1<y)&&(y<board.getHeight())) {
-                Tile neighbour = board.getCase(x-1, y);
+            if ((-1 < x - 1) && (x - 1 < board.getWidth()) && (-1 < y) && (y < board.getHeight())) {
+                Tile neighbour = board.getCase(x - 1, y);
                 if (neighbour.getMasked() && !neighbour.getFlag()) {
                     neighbour.discover(board);
                 }
             }
-            
+
             // up left
-            if ((-1<x-1)&&(x-1<board.getWidth())&&(-1<y+1)&&(y+1<board.getHeight())) {
-                Tile neighbour = board.getCase(x-1, y+1);
+            if ((-1 < x - 1) && (x - 1 < board.getWidth()) && (-1 < y + 1) && (y + 1 < board.getHeight())) {
+                Tile neighbour = board.getCase(x - 1, y + 1);
                 if (neighbour.getMasked() && !neighbour.getFlag()) {
                     neighbour.discover(board);
                 }
             }
-            
+
             // up
-            if ((-1<x)&&(x<board.getWidth())&&(-1<y+1)&&(y+1<board.getHeight())) {
-                Tile neighbour = board.getCase(x, y+1);
+            if ((-1 < x) && (x < board.getWidth()) && (-1 < y + 1) && (y + 1 < board.getHeight())) {
+                Tile neighbour = board.getCase(x, y + 1);
                 if (neighbour.getMasked() && !neighbour.getFlag()) {
                     neighbour.discover(board);
                 }
@@ -146,7 +156,7 @@ public class Empty implements Tile {
 
     @Override
     public Rectangle displayGraphic(int sizeTile) {
-        Point p = new Point(this.x*sizeTile, this.y*sizeTile);
+        Point p = new Point(this.x * sizeTile, this.y * sizeTile);
         if (this.masked) {
             if (this.flag) {
                 return new Texture("./img/Minesweeper_flag.png", p, sizeTile, sizeTile);
@@ -164,7 +174,7 @@ public class Empty implements Tile {
     @Override
     public void display() {
         if (this.masked) {
-            if (this.flag) { 
+            if (this.flag) {
                 System.out.print("P ");
             } else {
                 System.out.print("X ");
@@ -180,50 +190,50 @@ public class Empty implements Tile {
         int x = this.x;
         int y = this.y;
         // up right
-        if ((-1<x+1)&&(x+1<plato.getWidth())&&(-1<y+1)&&(y+1<plato.getHeight())) {
-            Tile neighbour = plato.getCase(x+1, y+1);
+        if ((-1 < x + 1) && (x + 1 < plato.getWidth()) && (-1 < y + 1) && (y + 1 < plato.getHeight())) {
+            Tile neighbour = plato.getCase(x + 1, y + 1);
             nbN += neighbour.addNeighbour();
         }
-        
+
         // right
-        if ((-1<x+1)&&(x+1<plato.getWidth())&&(-1<y)&&(y<plato.getHeight())) {
-            Tile neighbour = plato.getCase(x+1, y);
+        if ((-1 < x + 1) && (x + 1 < plato.getWidth()) && (-1 < y) && (y < plato.getHeight())) {
+            Tile neighbour = plato.getCase(x + 1, y);
             nbN += neighbour.addNeighbour();
         }
-        
+
         // down right
-        if ((-1<x+1)&&(x+1<plato.getWidth())&&(-1<y-1)&&(y-1<plato.getHeight())) {
-            Tile neighbour = plato.getCase(x+1, y-1);
+        if ((-1 < x + 1) && (x + 1 < plato.getWidth()) && (-1 < y - 1) && (y - 1 < plato.getHeight())) {
+            Tile neighbour = plato.getCase(x + 1, y - 1);
             nbN += neighbour.addNeighbour();
         }
-        
+
         // down
-        if ((-1<x)&&(x<plato.getWidth())&&(-1<y-1)&&(y-1<plato.getHeight())) {
-            Tile neighbour = plato.getCase(x, y-1);
+        if ((-1 < x) && (x < plato.getWidth()) && (-1 < y - 1) && (y - 1 < plato.getHeight())) {
+            Tile neighbour = plato.getCase(x, y - 1);
             nbN += neighbour.addNeighbour();
         }
-        
+
         // down left
-        if ((-1<x-1)&&(x-1<plato.getWidth())&&(-1<y-1)&&(y-1<plato.getHeight())) {
-            Tile neighbour = plato.getCase(x-1, y-1);
+        if ((-1 < x - 1) && (x - 1 < plato.getWidth()) && (-1 < y - 1) && (y - 1 < plato.getHeight())) {
+            Tile neighbour = plato.getCase(x - 1, y - 1);
             nbN += neighbour.addNeighbour();
         }
-        
+
         // left
-        if ((-1<x-1)&&(x-1<plato.getWidth())&&(-1<y)&&(y<plato.getHeight())) {
-            Tile neighbour = plato.getCase(x-1, y);
+        if ((-1 < x - 1) && (x - 1 < plato.getWidth()) && (-1 < y) && (y < plato.getHeight())) {
+            Tile neighbour = plato.getCase(x - 1, y);
             nbN += neighbour.addNeighbour();
         }
-        
+
         // up left
-        if ((-1<x-1)&&(x-1<plato.getWidth())&&(-1<y+1)&&(y+1<plato.getHeight())) {
-            Tile neighbour = plato.getCase(x-1, y+1);
+        if ((-1 < x - 1) && (x - 1 < plato.getWidth()) && (-1 < y + 1) && (y + 1 < plato.getHeight())) {
+            Tile neighbour = plato.getCase(x - 1, y + 1);
             nbN += neighbour.addNeighbour();
         }
-        
+
         // up
-        if ((-1<x)&&(x<plato.getWidth())&&(-1<y+1)&&(y+1<plato.getHeight())) {
-            Tile neighbour = plato.getCase(x, y+1);
+        if ((-1 < x) && (x < plato.getWidth()) && (-1 < y + 1) && (y + 1 < plato.getHeight())) {
+            Tile neighbour = plato.getCase(x, y + 1);
             nbN += neighbour.addNeighbour();
         }
         this.nbNeighbours = nbN;
@@ -244,8 +254,7 @@ public class Empty implements Tile {
     public boolean endGameWin() {
         if (this.masked) {
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }

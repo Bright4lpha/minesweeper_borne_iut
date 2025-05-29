@@ -38,9 +38,19 @@ public class App {
                     System.out.println("Menu : " + m.mg.menu.getPos());
                     if (m.mg.menu.getPos() == 0) {
                         menu = 2; // change to game
-                        m.mg.openAfterMenu(m.window, m.board, m.button, m.level.getSizeTile(),
+                        m.board = new Board(m.level.getWidth(), m.level.getHeight(),
+                                m.level.getNbBombs());
+                        m.board.neighbourhood();
+                        m.button = new Dig(true);
+                        m.cursor = new Cursor(Constants.sizeTile);
+                        m.mg = new MainGraphic(m.window, m.board, m.button, m.level.getSizeTile(),
                                 m.level.getWidthWindow(), m.level.getHeightWindow());
+                        m.end = false;
                         m.window.rafraichir();
+
+                        // m.mg.openAfterMenu(m.window, m.board, m.button, m.level.getSizeTile(),
+                        // m.level.getWidthWindow(), m.level.getHeightWindow());
+                        // m.window.rafraichir();
                     } else if (m.mg.menu.getPos() == 1) {
                         menu = 3; // change to scores
                     } else if (m.mg.menu.getPos() == 2) {
@@ -103,6 +113,7 @@ public class App {
                     if (keyboard.isButtonCTrigger()) {
                         m.board.action(m.cursor.getX(), m.cursor.getY(), m.button, m.level.getSizeTile());
                         m.mg.update(m.window, m.board);
+                        m.window.rafraichir();
                         m.end = m.board.endGameMine();
                         if (m.end) {
                             m.mg.endOfTheGameMine(m.window, m.level.getSizeTile(),
@@ -131,6 +142,9 @@ public class App {
                                 m.level.getWidthWindow(), m.level.getHeightWindow());
                         m.end = false;
                         m.window.rafraichir();
+                    }
+                    if (keyboard.isButtonXTrigger()) {
+                        System.exit(0);
                     }
                 }
             }

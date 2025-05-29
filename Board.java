@@ -51,6 +51,12 @@ public class Board {
         return this.discoveredTiles;
     }
 
+    public void addDiscoveredTile(Tile c) {
+        if (!this.discoveredTiles.contains(c)) {
+            this.discoveredTiles.add(c);
+        }
+    }
+
     public void clearDiscoveredTiles() {
         this.discoveredTiles.clear();
     }
@@ -73,16 +79,17 @@ public class Board {
                     }
                 }
             }
-            System.out.println();
+            // System.out.println();
         }
     }
 
     public void action(int x, int y, Button b, int sizeTile) {
         int i = x / sizeTile;
         int j = y / sizeTile;
+        System.out.println("Action on tile: " + i + ", " + j);
+        System.out.println("Action on tile: " + x + ", " + y);
         for (Tile c : this.tiles) {
             if (c.getX() == i && c.getY() == j) {
-                discoveredTiles.add(c);
                 b.actionButton(c, this);
             }
         }
@@ -91,7 +98,6 @@ public class Board {
     public void neighbourhood() {
         for (Tile c : this.tiles) {
             c.neighbour(this);
-            discoveredTiles.add(c);
         }
     }
 

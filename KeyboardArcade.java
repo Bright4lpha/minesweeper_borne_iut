@@ -50,7 +50,7 @@ public class KeyboardArcade implements KeyListener {
     private boolean buttonYTrigger;
     private boolean buttonZ;
     private boolean buttonZTrigger;
-    
+
     public KeyboardArcade() {
         // Constructor
         this.up = this.upTrigger = this.down = this.downTrigger = false;
@@ -174,7 +174,7 @@ public class KeyboardArcade implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        System.out.println("Key released: " + e.getKeyCode());
+        // System.out.println("Key released: " + e.getKeyCode());
         switch (e.getKeyCode()) {
             case KeyEvent.VK_UP:
                 this.up = false;
@@ -230,7 +230,7 @@ public class KeyboardArcade implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("Key pressed: " + e.getKeyCode());
+        // System.out.println("Key pressed: " + e.getKeyCode());
         switch (e.getKeyCode()) {
             case KeyEvent.VK_UP:
                 this.up = true;
