@@ -15,20 +15,23 @@ public class Menu {
 
     }
 
-    public void display(Fenetre window, int sizeTile, int width, int height) {
-        window.ajouter(new Rectangle(Couleur.BLEU, new Point(0, 0), width, height, true));
-        // window.ajouter(new Rectangle(Couleur.JAUNE, new Point(337, 765), 600, 100,
+    public void display(Fenetre window, int sizeTile, int width, int height, Rectangle cursorMenuTexture) {
+        // window.ajouter(new Rectangle(Couleur.BLEU, new Point(0, 0), width, height,
         // true));
-        // window.ajouter(new Rectangle(Couleur.MAGENTA, new Point(437, 550), 400, 100,
-        // true));
-        // window.ajouter(new Rectangle(Couleur.ORANGE, new Point(437, 400), 400, 100,
-        // true));
-        // window.ajouter(new Rectangle(Couleur.ROSE, new Point(437, 250), 400, 100,
-        // true));
-        // window.ajouter(new Rectangle(Couleur.ROUGE, new Point(437, 100), 400, 100,
-        // true));
+        window.ajouter(new Texture("./img/menu_background.png", new Point(0, 0), width, height));
+        window.ajouter(new Rectangle(Couleur.GRIS_CLAIR, new Point(337, 765), 600, 100,
+                true));
+        window.ajouter(new Rectangle(Couleur.GRIS_CLAIR, new Point(437, 550), 400, 100,
+                true));
+        window.ajouter(new Rectangle(Couleur.GRIS_CLAIR, new Point(437, 400), 400, 100,
+                true));
+        window.ajouter(new Rectangle(Couleur.GRIS_CLAIR, new Point(437, 250), 400, 100,
+                true));
+        window.ajouter(new Rectangle(Couleur.GRIS_CLAIR, new Point(437, 100), 400, 100,
+                true));
 
         window.ajouter(new Texture("./img/Minesweeper.png", new Point(337, 765), 600, 100));
+        window.ajouter(cursorMenuTexture);
         window.ajouter(new Texture("./img/menu_play.png", new Point(437, 550), 400, 100));
         window.ajouter(new Texture("./img/menu_scores.png", new Point(437, 400), 400, 100));
         window.ajouter(new Texture("./img/menu_rules.png", new Point(437, 250), 400, 100));

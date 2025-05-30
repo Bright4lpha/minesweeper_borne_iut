@@ -44,7 +44,7 @@ public class Flag implements Button{
          * If the button is activated, we switch the flag
          */
         if (this.state) {
-            c.switchFlag();
+            c.switchFlag(board);
         }
     }
 
@@ -54,7 +54,7 @@ public class Flag implements Button{
          * We create a square with the color blue, the position and the size of the tile
          */
         if (this.state) {
-            return new Texture("./img/Minesweeper_flag_true.png", new Point(width - 3*sizeTile,height-2*sizeTile), sizeTile, sizeTile);
+            return new Texture("./img/Minesweeper_flag.png", new Point(width - 3*sizeTile,height-2*sizeTile), sizeTile, sizeTile);
         } else {
             return new Texture("./img/Minesweeper_flag.png", new Point(width - 3*sizeTile,height-2*sizeTile), sizeTile, sizeTile);
         }    

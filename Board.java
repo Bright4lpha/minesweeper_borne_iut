@@ -91,6 +91,7 @@ public class Board {
         for (Tile c : this.tiles) {
             if (c.getX() == i && c.getY() == j) {
                 b.actionButton(c, this);
+                this.addDiscoveredTile(c);
             }
         }
     }

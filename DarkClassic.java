@@ -15,7 +15,7 @@ public class DarkClassic implements Theme {
 
     @Override
     public String getFlagTrue() {
-        return this.toString() + "/Minesweeper_flag_true.png";
+        return this.toString() + "/Minesweeper_flag.png";
     }
 
     @Override
@@ -25,7 +25,7 @@ public class DarkClassic implements Theme {
 
     @Override
     public String getDigTrue() {
-        return this.toString() + "/Minesweeper_questionmark_true.png";
+        return this.toString() + "/Minesweeper_questionmark.png";
     }
     
     @Override

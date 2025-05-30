@@ -72,15 +72,19 @@ public class App {
                     }
                     // change to dig button
                     if (keyboard.isButtonATrigger()) {
-                        m.button = new Dig(true);
-                        m.mg.changeButton(m.button);
-                        m.window.rafraichir();
+                        if (m.button instanceof Flag) {
+                            m.button = new Dig(true);
+                            m.mg.changeButton(m.button);
+                            m.window.rafraichir();
+                        }
                     }
                     // change to flag button
                     if (keyboard.isButtonBTrigger()) {
-                        m.button = new Flag(true);
-                        m.mg.changeButton(m.button);
-                        m.window.rafraichir();
+                        if (m.button instanceof Dig) {
+                            m.button = new Flag(true);
+                            m.mg.changeButton(m.button);
+                            m.window.rafraichir();
+                        }
                     }
                     // move
                     if (keyboard.isUpTrigger()) {

@@ -150,8 +150,9 @@ public class Empty implements Tile {
         }
     }
 
-    public void switchFlag() {
+    public void switchFlag(Board board) {
         this.flag = !this.flag;
+        board.addDiscoveredTile(this);
     }
 
     @Override

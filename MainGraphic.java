@@ -17,7 +17,7 @@ public class MainGraphic {
             Constants.sizeTile);
 
     public Menu menu = new Menu();
-    public Rectangle cursorMenuTexture = new Rectangle(Couleur.BLANC, new Point(437, 550), 400, 100, false);
+    public Rectangle cursorMenuTexture = new Rectangle(Couleur.GRIS_FONCE, new Point(437, 550), 400, 100, true);
 
     public MainGraphic(Fenetre window, Board board, Button b, int sizeTile, int width, int height) {
         window.effacer();
@@ -121,10 +121,10 @@ public class MainGraphic {
         for (Tile c : board.getDiscoveredTiles()) {
             window.ajouter(c.displayGraphic(Constants.sizeTile));
         }
-        // Clean list of discovered tiles
-        board.clearDiscoveredTiles();
         window.ajouter(cursorTexture);
         window.rafraichir();
+        // Clean list of discovered tiles
+        board.clearDiscoveredTiles();
     }
 
     public void endOfTheGameMine(Fenetre window, int sizeTile, int width, int height) {
@@ -154,8 +154,8 @@ public class MainGraphic {
     }
 
     public void menu(Fenetre window, int sizeTile, int width, int height) {
-        this.menu.display(window, sizeTile, width, height);
-        window.ajouter(cursorMenuTexture);
+        // window.ajouter(cursorMenuTexture);
+        this.menu.display(window, sizeTile, width, height, this.cursorMenuTexture);
     }
 
     public Minesweeper menuOnClick(int x, int y, Minesweeper m) {

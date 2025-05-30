@@ -72,7 +72,7 @@ public class Bomb implements Tile {
     }
 
     @Override
-    public void switchFlag() {
+    public void switchFlag(Board board) {
         this.flag = !this.flag;
     }
 
