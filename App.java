@@ -1,6 +1,11 @@
+import MG2D.audio.*;
+
 public class App {
 
     private static KeyboardArcade keyboard;
+
+    // private Musique music;
+    // Bruitage music;
 
     public static void main(String[] args) {
         Minesweeper m = new Minesweeper();
@@ -13,6 +18,9 @@ public class App {
         m.window.rafraichir();
 
         int menu = 1;
+
+        Musique music2 = new Musique("./sounds/loading.mp3");
+        music2.lecture();
 
         while (true) {
             try {
@@ -121,6 +129,8 @@ public class App {
                         m.mg.update(m.window, m.board);
                         m.window.rafraichir();
                         m.end = m.board.endGameMine();
+                        Bruitage b = new Bruitage("./sounds/select.mp3");
+                        b.lecture();
                         if (m.end) {
                             m.mg.endOfTheGameMine(m.window, m.level.getSizeTile(),
                                     m.level.getWidthWindow(),

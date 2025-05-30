@@ -23,3 +23,8 @@ Buttons:
     -   1st : A - Button to dig
     -   2nd : B - Button to flag
     -   3rd : C - Dig/Flag - Restart
+
+## Credits
+
+Music from : https://gooseninja.itch.io/space-music-pack
+Sound effect from : https://jdwasabi.itch.io/8-bit-16-bit-sound-effects-pack

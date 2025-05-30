@@ -1,5 +1,6 @@
 import MG2D.Fenetre;
 import MG2D.Souris;
+import MG2D.audio.Musique;
 
 public class Minesweeper {
 
@@ -14,6 +15,7 @@ public class Minesweeper {
     public Cursor cursor;
     public static KeyboardArcade keyboard;
 
+
     public Minesweeper() {
         Minesweeper.keyboard = new KeyboardArcade();
         this.level = new Basic();
@@ -27,6 +29,7 @@ public class Minesweeper {
                 level.getHeightWindow());
         this.end = false;
         this.menu = false;
+
     }
 
     public Minesweeper(Level level) {
