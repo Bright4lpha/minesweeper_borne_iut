@@ -1,4 +1,5 @@
 import java.awt.Font;
+import java.security.Key;
 import java.util.ArrayList;
 
 import MG2D.Couleur;
@@ -15,11 +16,13 @@ public class MainGraphic {
     private Texture buttonSelect = new Texture("./img/Minesweeper_button_select.png",
             new Point(2 * Constants.sizeTile, Constants.screenHeight - 2 * Constants.sizeTile), Constants.sizeTile,
             Constants.sizeTile);
-
+    private Score score;
     public Menu menu = new Menu();
     public Rectangle cursorMenuTexture = new Rectangle(Couleur.GRIS_FONCE, new Point(437, 550), 400, 100, true);
 
     public MainGraphic(Fenetre window, Board board, Button b, int sizeTile, int width, int height) {
+        
+        
         window.effacer();
         // Background
         window.ajouter(new Texture("./img/Minesweeper_background.png", new Point(0, 0), width, height));
@@ -59,6 +62,8 @@ public class MainGraphic {
                 sizeTile, sizeTile));
         window.ajouter(new Texte(Couleur.ROUGE, new String("" + board.getNbBombs()), calibri,
                 new Point(width / 2 + sizeTile, height - sizeTile + sizeTile / 2)));
+        score = new Score(window);
+        score.begin();
     }
 
     public void openAfterMenu(Fenetre window, Board board, Button b, int sizeTile, int width, int height) {
@@ -127,14 +132,20 @@ public class MainGraphic {
         board.clearDiscoveredTiles();
     }
 
-    public void endOfTheGameMine(Fenetre window, int sizeTile, int width, int height) {
+    public void endOfTheGameMine(Fenetre window, int sizeTile, int width, int height,  KeyboardArcade keyboard) {
         window.ajouter(new Texture("./img/Minesweeper_lose.png",
                 new Point(width / 2 - 4 * sizeTile, height - 3 * sizeTile), 8 * sizeTile, 2 * sizeTile));
+        score.stop();
+        int finalTime = score.getTime();
+        Score.registerScore(window, keyboard, null, finalTime, "highscores.txt");
     }
 
-    public void endOfTheGameWin(Fenetre window, int sizeTile, int width, int height) {
+    public void endOfTheGameWin(Fenetre window, int sizeTile, int width, int height, KeyboardArcade keyboard) {
         window.ajouter(new Texture("./img/Minesweeper_win.png",
                 new Point(width / 2 - 4 * sizeTile, height - 3 * sizeTile), 8 * sizeTile, 2 * sizeTile));
+        score.stop();
+        int finalTime = score.getTime();
+        Score.registerScore(window, keyboard, null, finalTime, "highscores.txt");
     }
 
     public void menuLevel(Fenetre window, int sizeTile, int width, int height) {
