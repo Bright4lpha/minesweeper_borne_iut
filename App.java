@@ -10,7 +10,6 @@ public class App {
     public static void main(String[] args) {
         Minesweeper m = new Minesweeper();
         keyboard = new KeyboardArcade();
-        ClavierBorneArcade keyboardArcade = new ClavierBorneArcade();
         m.window.addKeyListener(keyboard);
         m.window.getP().addKeyListener(keyboard);
 
