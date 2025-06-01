@@ -15,6 +15,7 @@ public class App {
     public static void main(String[] args) {
         Minesweeper m = new Minesweeper();
         keyboard = new KeyboardArcade();
+        ClavierBorneArcade keyboardArcade = new ClavierBorneArcade();
         m.window.addKeyListener(keyboard);
         m.window.getP().addKeyListener(keyboard);
 
@@ -84,13 +85,13 @@ public class App {
                     if (m.end) {
                         m.mg.endOfTheGameMine(m.window, m.level.getSizeTile(),
                                 m.level.getWidthWindow(),
-                                m.level.getHeightWindow());
+                                m.level.getHeightWindow(), keyboard);
                     } else if (!m.end) {
                         m.end = m.board.endGameWin();
                         if (m.end) {
                             m.mg.endOfTheGameWin(m.window, m.level.getSizeTile(),
                                     m.level.getWidthWindow(),
-                                    m.level.getHeightWindow());
+                                    m.level.getHeightWindow(), keyboard);
                         }
                     }
                     m.window.rafraichir();
