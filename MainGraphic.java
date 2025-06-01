@@ -114,6 +114,34 @@ public class MainGraphic {
         window.ajouter(new Texture("./img/rules.png", new Point(0, 0), width, height));
     }
 
+    //Display the score view
+    public void openScore(Fenetre window, int width, int height) {
+        
+
+        String scoreFileName = "highscores.txt";
+        ArrayList<ScoreData> scores = score.readFile(scoreFileName);
+        Texte title = new Texte(Couleur.NOIR, "High Scores", calibri, new Point(width / 2, height - 80));
+        Font scoreFont = new Font("Calibri", Font.PLAIN, 32);
+
+        window.effacer();
+
+        window.ajouter(new Texture("./img/Minesweeper_background.png", new Point(0, 0), width, height));
+        window.ajouter(title);
+        
+        int y = height - 150;
+        int i = 1;
+
+        for (ScoreData sd : scores) {
+            String ligne = i + ". " + sd.getName() + " - " + sd.toFormattedString();
+            Texte t = new Texte(Couleur.BLANC, ligne, scoreFont, new Point((width / 2), y));
+            window.ajouter(t);
+            y -= 50;
+            i++;
+        }
+
+        window.rafraichir();
+    }
+
     /**
      * Update the board of the game
      * 
@@ -136,8 +164,6 @@ public class MainGraphic {
         window.ajouter(new Texture("./img/Minesweeper_lose.png",
                 new Point(width / 2 - 4 * sizeTile, height - 3 * sizeTile), 8 * sizeTile, 2 * sizeTile));
         score.stop();
-        int finalTime = score.getTime();
-        Score.registerScore(window, keyboard, null, finalTime, "highscores.txt");
     }
 
     public void endOfTheGameWin(Fenetre window, int sizeTile, int width, int height, KeyboardArcade keyboard) {

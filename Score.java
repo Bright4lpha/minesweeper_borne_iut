@@ -153,38 +153,28 @@ public class Score {
             System.err.println(e.getMessage());
         }
         Texte highscore = new Texte(Couleur.NOIR, "H  I  G  H  S  C  O  R  E", font, new Point(640, 950));
-        Texte scoreAchieved = new Texte(Couleur.NOIR, score, font, new Point(420, 400));
-        Texte enterYourName = new Texte(Couleur.NOIR, "E n t e r   Y o u r   n a m e", font, new Point(640, 800));
+
+        Texte enterYourName = new Texte(Couleur.NOIR, "E n t e r   Y o u r   N a m e", font, new Point(640, 800));
+        Texte toRegisterYourScore = new Texte(Couleur.NOIR, "T o  R e g i s t e r  Y o u r  S c o r e", font, new Point(640, 700));
         Texte numPos = new Texte(Couleur.NOIR, (position + 1) + "eme", font, new Point(120, 400));
 
         if (position == 0)
             numPos.setTexte("1er");
 
-        Texte prevNumPos = new Texte(Couleur.NOIR, "", font, new Point(120, 580));
-        Texte nextNumPos = new Texte(Couleur.NOIR, "", font, new Point(120, 170));
 
         Texte characters[] = new Texte[4];
-        characters[0] = new Texte(Couleur.NOIR, c[0] + "", font, new Point(690, 400));
-        characters[1] = new Texte(Couleur.NOIR, c[1] + "", font, new Point(840, 400));
-        characters[2] = new Texte(Couleur.NOIR, c[2] + "", font, new Point(990, 400));
-        characters[3] = new Texte(Couleur.NOIR, c[3] + "", font, new Point(1140, 400));
-        Texte prevCharacters[] = new Texte[3];
-        prevCharacters[0] = new Texte(Couleur.NOIR, cprec[0] + "", font, new Point(690, 580));
-        prevCharacters[1] = new Texte(Couleur.NOIR, cprec[1] + "", font, new Point(840, 580));
-        prevCharacters[2] = new Texte(Couleur.NOIR, cprec[2] + "", font, new Point(990, 580));
-        Texte prevScore = new Texte(Couleur.NOIR, "", font, new Point(420, 580));
-        Texte nextCharacters[] = new Texte[3];
-        nextCharacters[0] = new Texte(Couleur.NOIR, csuiv[0] + "", font, new Point(690, 170));
-        nextCharacters[1] = new Texte(Couleur.NOIR, csuiv[1] + "", font, new Point(840, 170));
-        nextCharacters[2] = new Texte(Couleur.NOIR, csuiv[2] + "", font, new Point(990, 170));
-        Texte nextScore = new Texte(Couleur.NOIR, "", font, new Point(420, 170));
+        characters[0] = new Texte(Couleur.NOIR, c[0] + "", font, new Point(485, 400));
+        characters[1] = new Texte(Couleur.NOIR, c[1] + "", font, new Point(585, 400));
+        characters[2] = new Texte(Couleur.NOIR, c[2] + "", font, new Point(685, 400));
+        characters[3] = new Texte(Couleur.NOIR, c[3] + "", font, new Point(785, 400));
+ 
 
-        Rectangle rect1 = new Rectangle(Couleur.NOIR, new Point(650, 350), new Point(720, 480), false);
-        Rectangle rect2 = new Rectangle(Couleur.NOIR, new Point(800, 350), new Point(870, 480), false);
-        Rectangle rect3 = new Rectangle(Couleur.NOIR, new Point(950, 350), new Point(1020, 480), false);
-        Rectangle rect4 = new Rectangle(Couleur.NOIR, new Point(1100, 350), new Point(1170, 480), false);
+        Rectangle rect1 = new Rectangle(Couleur.NOIR, new Point(450, 350), new Point(520, 480), false);
+        Rectangle rect2 = new Rectangle(Couleur.NOIR, new Point(550, 350), new Point(620, 480), false);
+        Rectangle rect3 = new Rectangle(Couleur.NOIR, new Point(650, 350), new Point(720, 480), false);
+        Rectangle rect4 = new Rectangle(Couleur.NOIR, new Point(750, 350), new Point(820, 480), false);
 
-        Triangle select = new Triangle(Couleur.NOIR, new Point(690, 340), new Point(670, 300), new Point(710, 300),
+        Triangle select = new Triangle(Couleur.NOIR, new Point(490, 340), new Point(470, 300), new Point(510, 300),
                 true);
 
         Texture whiteTrans = new Texture("img/blancTransparent.png", new Point(0, 0));
@@ -194,48 +184,19 @@ public class Score {
 
         f.ajouter(whiteTrans);
         f.ajouter(highscore);
-        f.ajouter(scoreAchieved);
-        f.ajouter(prevScore);
-        f.ajouter(nextScore);
+
         f.ajouter(enterYourName);
+        f.ajouter(toRegisterYourScore);
         f.ajouter(characters[0]);
         f.ajouter(characters[1]);
         f.ajouter(characters[2]);
         f.ajouter(characters[3]);
-        f.ajouter(prevCharacters[0]);
-        f.ajouter(prevCharacters[1]);
-        f.ajouter(prevCharacters[2]);
-        f.ajouter(nextCharacters[0]);
-        f.ajouter(nextCharacters[1]);
-        f.ajouter(nextCharacters[2]);
-        f.ajouter(numPos);
-        f.ajouter(prevNumPos);
-        f.ajouter(nextNumPos);
         f.ajouter(rect1);
         f.ajouter(rect2);
         f.ajouter(rect3);
         f.ajouter(rect4);
         f.ajouter(select);
 
-        if (position != 0) {
-            // System.out.println("ajout du record precedent");
-            prevCharacters[0].setTexte(scoresData.get(position - 1).getName().charAt(0) + "");
-            prevCharacters[1].setTexte(scoresData.get(position - 1).getName().charAt(1) + "");
-            prevCharacters[2].setTexte(scoresData.get(position - 1).getName().charAt(2) + "");
-            prevScore.setTexte(scoresData.get(position - 1).getScore() + "");
-            if (position == 1)
-                prevNumPos.setTexte("1er");
-            else
-                prevNumPos.setTexte(position + "eme");
-        }
-        if (position != scoresData.size()) {
-            // System.out.println("ajout du record suivant");
-            nextCharacters[0].setTexte(scoresData.get(position).getName().charAt(0) + "");
-            nextCharacters[1].setTexte(scoresData.get(position).getName().charAt(1) + "");
-            nextCharacters[2].setTexte(scoresData.get(position).getName().charAt(2) + "");
-            nextScore.setTexte(scoresData.get(position).getScore() + "");
-            nextNumPos.setTexte((position + 2) + "eme");
-        }
 
         done = false;
 
@@ -248,14 +209,14 @@ public class Score {
             if (keyboard.isRightTrigger()) {
                 if (indexSelec < 3) {
                     indexSelec++;
-                    select.translater(150, 0);
+                    select.translater(100, 0);
                 }
             }
 
             if (keyboard.isLeftTrigger()) {
                 if (indexSelec > 0) {
                     indexSelec--;
-                    select.translater(-150, 0);
+                    select.translater(-100, 0);
                 }
             }
 

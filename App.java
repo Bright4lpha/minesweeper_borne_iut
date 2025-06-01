@@ -61,6 +61,8 @@ public class App {
                         // m.window.rafraichir();
                     } else if (m.mg.menu.getPos() == 1) {
                         menu = 3; // change to scores
+                        m.mg.openScore(m.window, m.level.getWidthWindow(), m.level.getHeightWindow());
+                        m.window.rafraichir();
                     } else if (m.mg.menu.getPos() == 2) {
                         menu = 4; // change to rules
                         m.mg.openRules(m.window, m.level.getWidthWindow(), m.level.getHeightWindow());
